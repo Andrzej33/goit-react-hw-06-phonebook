@@ -6,8 +6,8 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { Title } from './Title/Title.styled';
-import { useSelector, useDispatch } from 'react-redux';
-import {increment} from '../Redux/store'
+
+// import {increment} from '../Redux/store'
 
 // const initialContacts = [
 //       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -17,9 +17,9 @@ import {increment} from '../Redux/store'
 // ]
 
 export const App = () => {
-const dispatch = useDispatch()
-const value = useSelector(state => state.myValue)
-console.log(value);
+
+// const value = useSelector(state => state.myValue)
+// console.log(value);
   const [contacts, setContacts] = useState(
     () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
   );
@@ -74,7 +74,7 @@ console.log(value);
 
   return (
     <Layout>
-      <button onClick={()=>{dispatch(increment(100))}}>Go</button>
+      {/* <button onClick={()=>{dispatch(increment(100))}}>Go</button> */}
       <ContactForm onAdd={addContact} />
       <Title>Contacts</Title>
       <Filter value={filter} onChange={changeFilter} />

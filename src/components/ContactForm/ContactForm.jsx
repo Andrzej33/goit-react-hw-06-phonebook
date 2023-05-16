@@ -2,6 +2,10 @@ import { Formik, Field } from 'formik';
 import { Form, ErrorMessage } from './Form.styled';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { add } from 'Redux/ContactsSlice/slice';
+import { nanoid } from 'nanoid';
+
 
 // const  phoneRegEx = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -16,11 +20,15 @@ const ContactsSchema = Yup.object().shape({
 });
 
 export const ContactForm = ({ onAdd }) => {
-  // const nameId = nanoid();
-  // const numberId = nanoid();
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    onAdd(values);
+    // console.log(values.name,values.number)
+    // console.log(values);
+    const newValues ={...values,id:nanoid()}
+    // console.log(newValues);
+dispatch(add(newValues));
+    // onAdd(values);
     actions.resetForm();
   };
 
@@ -29,6 +37,7 @@ export const ContactForm = ({ onAdd }) => {
       initialValues={{
         name: '',
         number: '',
+
       }}
       validationSchema={ContactsSchema}
       onSubmit={handleSubmit}

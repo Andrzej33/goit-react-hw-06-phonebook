@@ -1,19 +1,29 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { remove } from 'Redux/ContactsSlice/slice';
+
 
 export const ContactItem = ({
   contact: { id, name, number },
   onDeleteContact,
-}) => (
-  <>
-    <p>
-      {name}: <span>{number}</span>
-    </p>
-
-    <button type="button" onClick={() => onDeleteContact(id)}>
-      delete
-    </button>
-  </>
-);
+}) => {
+  const dispatch = useDispatch();
+  // const id = nanoid()
+  return (
+    <>
+      <p>
+        {name}: <span>{number}</span>
+      </p>
+  
+      <button type="button" 
+      // onClick={() => onDeleteContact(id)}
+onClick={()=>dispatch(remove(id))}
+      >
+        delete
+      </button>
+    </>
+  );
+}
 
 ContactItem.propTypes = {
   contact: PropTypes.shape({
