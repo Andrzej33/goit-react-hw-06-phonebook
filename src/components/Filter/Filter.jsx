@@ -10,11 +10,11 @@ export const Filter = (
 
     const dispatch = useDispatch();
      const onChange = e => {
-       const filterValue = e.currentTarget.value;
+       const filterValue = e.currentTarget.value.trim();
        dispatch(show(filterValue));
     };
     
-    const filterValue = useSelector(state => state.myFilter)
+    const filterValue = useSelector(state => state.filter)
  return (
     <FilterBox>
       <label htmlFor="">Find contacts by name</label>{' '}

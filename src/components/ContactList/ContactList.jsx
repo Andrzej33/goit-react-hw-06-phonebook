@@ -4,15 +4,17 @@ import { ListOfContacts } from './ContactList.styled';
 import { useSelector } from 'react-redux';
 
 export const ContactList = (
-  // { 
-  // contacts,
-  //  onDeleteContact }
+ 
    ) => {
-const contacts = useSelector(state => state.contacts)
-  // console.log(contacts);
+const contacts = useSelector(state => state.contacts);
+const filterValue = useSelector(state => state.filter);
+
+const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filterValue.toLowerCase()))
+
+ 
   return (
     <ListOfContacts>
-      {contacts.map(contact => {
+      {filteredContacts.map(contact => {
         return (
           <li key={contact.id}>
             <ContactItem contact={contact}
