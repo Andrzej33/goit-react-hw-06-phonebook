@@ -4,6 +4,6 @@ import { filterSlice } from "./MyValue/slice";
 
 
  export const reducer = combineReducers({
-contacts: contactsSlice.reducer,
-   filter: filterSlice.reducer, 
- })
+  contacts: contactsSlice.reducer,
+     filter: filterSlice.reducer, 
+   })

@@ -5,7 +5,7 @@ import './index.css';
 import { ThemeProvider } from 'styled-components';
 import { store,persistor } from './Redux/store';
 import { Provider } from 'react-redux';
-// import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 
@@ -20,12 +20,12 @@ const theme = {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    {/* <button>jkhjkhkhkhj</button> */}
+   
       <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <PersistGate loading={null} persistor={persistor}>
       <App />
-      {/* <button>jkhjkhkhkhj</button> */}
-      {/* </PersistGate> */}
+
+      </PersistGate>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>

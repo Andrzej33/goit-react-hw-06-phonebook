@@ -1,8 +1,9 @@
 import { Formik, Field } from 'formik';
 import { Form, ErrorMessage } from './Form.styled';
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { add } from 'Redux/ContactsSlice/slice';
 import { nanoid } from 'nanoid';
 
@@ -19,15 +20,35 @@ const ContactsSchema = Yup.object().shape({
     .required('Required field'),
 });
 
-export const ContactForm = ({ onAdd }) => {
+export const ContactForm = (
+  // { onAdd }
+  ) => {
+    const contacts = useSelector(state => state.contacts)
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
     // console.log(values.name,values.number)
     // console.log(values);
-    const newValues ={...values,id:nanoid()}
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === values.name.toLowerCase()
+      )
+    ) {
+      alert(`${values.name} is already in contacts`);
+      return;
+    }
+    if (contacts.find(contact => contact.number === values.number)) {
+      alert(`${values.number} is already exist in contacts`);
+      return;
+    }
+    {
+      const newValues ={...values,id:nanoid()}
+
+      dispatch(add(newValues));
+    }
+    
     // console.log(newValues);
-dispatch(add(newValues));
+
     // onAdd(values);
     actions.resetForm();
   };
@@ -56,6 +77,6 @@ dispatch(add(newValues));
 };
 // }
 
-ContactForm.propTypes = {
-  onAdd: PropTypes.func.isRequired,
-};
+// ContactForm.propTypes = {
+//   onAdd: PropTypes.func.isRequired,
+// };

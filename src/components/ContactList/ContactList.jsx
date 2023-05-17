@@ -1,5 +1,5 @@
 import { ContactItem } from '../ContactItem/ContactItem';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { ListOfContacts } from './ContactList.styled';
 import { useSelector } from 'react-redux';
 
@@ -8,8 +8,8 @@ export const ContactList = (
   // contacts,
   //  onDeleteContact }
    ) => {
-const contacts = useSelector(state => state.myContacts)
-  
+const contacts = useSelector(state => state.contacts)
+  // console.log(contacts);
   return (
     <ListOfContacts>
       {contacts.map(contact => {
@@ -25,10 +25,10 @@ const contacts = useSelector(state => state.myContacts)
   );
 };
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
+// ContactList.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+// };

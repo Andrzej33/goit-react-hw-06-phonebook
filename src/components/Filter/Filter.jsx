@@ -2,7 +2,7 @@ import { FilterBox } from './Filter.styled';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { show } from 'Redux/MyValue/slice';
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 export const Filter = (
   // { value, onChange }
@@ -24,7 +24,7 @@ export const Filter = (
 }
 
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+// Filter.propTypes = {
+//   value: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+// };
