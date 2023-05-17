@@ -1,7 +1,7 @@
 import { FilterBox } from './Filter.styled';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { show } from 'Redux/MyValue/slice';
+import { show } from 'Redux/FilterSlice/filterSlice';
 // import PropTypes from 'prop-types'
 
 export const Filter = (

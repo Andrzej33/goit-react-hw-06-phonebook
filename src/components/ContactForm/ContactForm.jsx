@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 // import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { add } from 'Redux/ContactsSlice/slice';
+import { add } from 'Redux/ContactsSlice/filterSlice';
 import { nanoid } from '@reduxjs/toolkit';
 
 

@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { remove } from 'Redux/ContactsSlice/slice';
+import { remove } from 'Redux/ContactsSlice/filterSlice';
 
 
 export const ContactItem = ({
