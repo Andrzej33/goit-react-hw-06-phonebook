@@ -1,13 +1,12 @@
 import { Formik, Field } from 'formik';
 import { Form, ErrorMessage } from './Form.styled';
 import * as Yup from 'yup';
-// import PropTypes from 'prop-types';
+
 import { useDispatch, useSelector } from 'react-redux';
 
-import { add } from 'Redux/ContactsSlice/filterSlice';
+import { add } from 'Redux/contactsSlice';
 import { nanoid } from '@reduxjs/toolkit';
-
-
+import { takeContacts } from 'Redux/selectors';
 
 // const  phoneRegEx = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -21,15 +20,11 @@ const ContactsSchema = Yup.object().shape({
     .required('Required field'),
 });
 
-export const ContactForm = (
-  // { onAdd }
-  ) => {
-    const contacts = useSelector(state => state.contacts)
+export const ContactForm = () => {
+  const contacts = useSelector(takeContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    // console.log(values.name,values.number)
-    // console.log(values);
     if (
       contacts.find(
         contact => contact.name.toLowerCase() === values.name.toLowerCase()
@@ -43,14 +38,11 @@ export const ContactForm = (
       return;
     }
     {
-      const newValues ={...values,id:nanoid()}
+      const newValues = { ...values, id: nanoid() };
 
       dispatch(add(newValues));
     }
-    
-    // console.log(newValues);
 
-    // onAdd(values);
     actions.resetForm();
   };
 
@@ -59,7 +51,6 @@ export const ContactForm = (
       initialValues={{
         name: '',
         number: '',
-
       }}
       validationSchema={ContactsSchema}
       onSubmit={handleSubmit}
@@ -77,7 +68,3 @@ export const ContactForm = (
   );
 };
 // }
-
-// ContactForm.propTypes = {
-//   onAdd: PropTypes.func.isRequired,
-// };
